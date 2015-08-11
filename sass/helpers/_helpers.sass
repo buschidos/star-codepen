@@ -1,0 +1,48 @@
+@function em($size, $context: 16)
+  @return ($size/$context) * 1em
+
+@function img-url($image)
+  @return url('../img/#{$image}')
+
+=image($image)
+  background-image: img-url($image)
+
+=trans($what: all, $dur: 0.3, $easing: linear)
+  @if $dur == null
+    $dur: 0.2
+  transition: $what $dur + s $easing
+
+=wos
+  -webkit-overflow-scrolling: touch
+
+=scroll
+  overflow-x: hidden
+  overflow-y: scroll
+  right: -17px
+  .scrollbar-width-0 &
+    right: 0
+  .scrollbar-width-15 &
+    right: -15px
+  .scrollbar-width-16 &
+    right: -16px
+  .scrollbar-width-17 &
+    right: -17px
+  .mac-os &
+    right: -15px
+
+=slide-fade($parrent)
+  transform: translate3d(0, 50px, 0)
+  opacity: 0
+  transition: transform 0.5s ease, opacity 0.5s ease
+  .#{$parrent}.is-animate &
+    opacity: 1
+    transform: none
+
+=svg-border-animate
+  stroke-dashoffset: 0
+  .outer-border
+    transition-duration: 1s
+    transition-delay: 0.3s
+  .inner-border
+    transition-duration: 1s
+    transition-delay: 0.6s
